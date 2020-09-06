@@ -1,0 +1,36 @@
+.header__center {
+  @include displayFlex(center);
+  flex: 1;
+
+  .header__option {
+    @include displayFlex(initial, center);
+    padding: 0 30px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    > .MuiSvgIcon-root {
+      color: $secondaryColor;
+    }
+
+    &:hover {
+      background-color: #eff2f5;
+
+      > .MuiSvgIcon-root {
+        color: $primaryColor;
+      }
+    }
+  }
+
+  .header__option--active {
+    border-radius: 0;
+    border-bottom: 4px solid $primaryColor;
+
+    > .MuiSvgIcon-root {
+      color: $primaryColor;
+    }
+
+    &:hover {
+      background-color: $primaryBackgroundColor;
+    }
+  }
+}

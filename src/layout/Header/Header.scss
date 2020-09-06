@@ -1,0 +1,16 @@
+.header {
+  @import "../../styles/variables";
+  @import "../../styles/mixins";
+
+  @include displayFlex(space-between);
+  padding: 15px 20px;
+  position: sticky;
+  background-color: $primaryBackgroundColor;
+  z-index: 100;
+  top: 0;
+  box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
+
+  @import "./headerLeft";
+  @import "./headerCenter";
+  @import "./headerRight";
+}
