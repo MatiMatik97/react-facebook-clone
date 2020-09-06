@@ -1,7 +1,7 @@
-.header {
-  @import "../../styles/variables";
-  @import "../../styles/mixins";
+@import "../../styles/variables";
+@import "../../styles/mixins";
 
+.header {
   @include displayFlex(space-between);
   padding: 15px 20px;
   position: sticky;
@@ -10,7 +10,77 @@
   top: 0;
   box-shadow: 0px 5px 8px -9px rgba(0, 0, 0, 0.75);
 
-  @import "./headerLeft";
-  @import "./headerCenter";
-  @import "./headerRight";
+  // header__left
+  &__left {
+    @include displayFlex(space-evenly);
+
+    > img {
+      height: 40px;
+    }
+  }
+
+  &__input {
+    @include displayFlex(initial, center);
+    background-color: $secondaryBackgroundColor;
+    padding: 10px;
+    margin-left: 10px;
+    border-radius: 999px;
+
+    > input {
+      border: none;
+      background-color: transparent;
+      outline: none;
+    }
+  }
+
+  // header__center
+  &__center {
+    @include displayFlex(center);
+    flex: 1;
+  }
+
+  &__option {
+    @include displayFlex(initial, center);
+    padding: 0 30px;
+    border-radius: 10px;
+    cursor: pointer;
+
+    > .MuiSvgIcon-root {
+      color: $secondaryColor;
+    }
+
+    &:hover {
+      background-color: #eff2f5;
+
+      > .MuiSvgIcon-root {
+        color: $primaryColor;
+      }
+    }
+
+    &--active {
+      border-radius: 0;
+      border-bottom: 4px solid $primaryColor;
+
+      > .MuiSvgIcon-root {
+        color: $primaryColor;
+      }
+
+      &:hover {
+        background-color: $primaryBackgroundColor;
+      }
+    }
+  }
+
+  // header__right
+  &__right {
+    display: flex;
+  }
+
+  &__info {
+    @include displayFlex(initial, center);
+
+    > h4 {
+      margin-left: 10px;
+    }
+  }
 }
