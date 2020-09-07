@@ -17,3 +17,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: $primaryBackgroundColor;
 }
+
+.app {
+  background-color: $secondaryBackgroundColor;
+  height: 100vh;
+
+  &__body {
+    display: flex;
+  }
+}

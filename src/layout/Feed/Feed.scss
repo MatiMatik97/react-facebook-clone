@@ -1,0 +1,11 @@
+@import "../../styles/mixins";
+
+.feed {
+  @include displayFlex(center, center, column);
+  flex: 1;
+  padding: 30px 150px;
+
+  &__storyReel {
+    display: flex;
+  }
+}
