@@ -5,7 +5,7 @@ import React, {
   useContext,
   useReducer,
 } from "react";
-import { User } from "firebase";
+import { UserInfo } from "firebase";
 
 // TYPES AND INTERFACES
 
@@ -18,7 +18,7 @@ interface UserActions {
 }
 
 interface UserProps {
-  user: User | null;
+  user: UserInfo | null;
 }
 interface UserProviderProps {
   reducer: Reducer<UserProps, UserActions>;

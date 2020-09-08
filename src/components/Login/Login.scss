@@ -15,15 +15,20 @@
     }
   }
 
-  > button {
-    width: 300px;
-    background-color: $primaryColor;
-    color: $secondaryBackgroundColor;
-    font-weight: 800;
+  &__buttons {
+    @include displayFlex(initial, initial, column);
 
-    &:hover {
-      background-color: $primaryBackgroundColor;
-      color: $primaryColor;
+    > button {
+      margin: 10px;
+      width: 300px;
+      background-color: $primaryColor;
+      color: $secondaryBackgroundColor;
+      font-weight: 800;
+
+      &:hover {
+        background-color: $primaryBackgroundColor;
+        color: $primaryColor;
+      }
     }
   }
 }

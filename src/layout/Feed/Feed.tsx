@@ -2,7 +2,7 @@ import React from "react";
 import "./Feed.scss";
 import Story from "../../components/Story/Story";
 import MessageSender from "../../components/MessageSender/MessageSender";
-import Post from "../../components/Post/Post";
+import Posts from "../../components/Posts/Posts";
 
 const Feed: React.FC = () => {
   return (
@@ -37,22 +37,7 @@ const Feed: React.FC = () => {
 
       <MessageSender />
 
-      <div className="feed__posts">
-        <Post
-          profilePic="https://www.rollingstone.com/wp-content/uploads/2019/05/ava-max-ayntk.jpg?resize=1800,1200&w=1800"
-          message="Hello everyone!"
-          timestamp="Yesterday"
-          username="Ava Max"
-          image="https://i2.wp.com/celebmix.com/wp-content/uploads/2020/07/ava-max-releases-new-single-whos-laughing-now-01-scaled-e1596139640633.jpg?fit=1708%2C1120&ssl=1"
-        />
-
-        <Post
-          profilePic="https://www.rollingstone.com/wp-content/uploads/2019/05/ava-max-ayntk.jpg?resize=1800,1200&w=1800"
-          message="What's up?"
-          timestamp="Today"
-          username="Ava Max"
-        />
-      </div>
+      <Posts />
     </div>
   );
 };

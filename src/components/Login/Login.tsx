@@ -7,13 +7,27 @@ import { useUserContext, UserActionTypes } from "../../contexts/UserContext";
 const Login: React.FC = () => {
   const { dispatch } = useUserContext();
 
-  const signIn = async () => {
+  const signInWithGoogle = async () => {
     try {
       const response = await auth.signInWithPopup(provider);
       dispatch({ type: UserActionTypes.SET_USER, payload: response.user });
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const signInAsGuest = async () => {
+    const user = {
+      uid: "temporary_id",
+      displayName: "Guest",
+      photoURL:
+        "https://www.graphicsprings.com/filestorage/stencils/3f09542940267c887a5bcef0724cf3a4.png?width=500&height=500",
+      email: "temporary_mail@gmail.com",
+      phoneNumber: null,
+      providerId: "google.com",
+    };
+
+    dispatch({ type: UserActionTypes.SET_USER, payload: user });
   };
 
   return (
@@ -29,9 +43,15 @@ const Login: React.FC = () => {
         />
       </div>
 
-      <Button type="submit" onClick={signIn}>
-        Sign In
-      </Button>
+      <div className="login__buttons">
+        <Button type="submit" onClick={signInWithGoogle}>
+          Sign In With Google
+        </Button>
+
+        <Button type="submit" onClick={signInAsGuest}>
+          Sign In As Guest
+        </Button>
+      </div>
     </div>
   );
 };

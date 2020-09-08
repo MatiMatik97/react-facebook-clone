@@ -10,17 +10,21 @@ import { Avatar, IconButton } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import { useUserContext } from "../../contexts/UserContext";
+import { useUserContext, UserActionTypes } from "../../contexts/UserContext";
 
 const Header: React.FC = () => {
   const {
     state: { user },
+    dispatch,
   } = useUserContext();
 
   return (
     <div className="header">
       <div className="header__left">
         <img
+          onClick={() =>
+            dispatch({ type: UserActionTypes.SET_USER, payload: null })
+          }
           src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png"
           alt=""
         />

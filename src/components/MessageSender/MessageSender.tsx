@@ -6,6 +6,9 @@ import VideocamIcon from "@material-ui/icons/Videocam";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
 import { useUserContext } from "../../contexts/UserContext";
+import db from "../../firebase";
+import * as firebase from "firebase/app";
+import "firebase/firestore";
 
 type Message = {
   message: string;
@@ -16,10 +19,22 @@ const MessageSender: React.FC = () => {
   const {
     state: { user },
   } = useUserContext();
-  const { register, handleSubmit } = useForm<Message>();
+  const { register, handleSubmit, reset } = useForm<Message>();
 
   const onSubmit = (data: Message) => {
-    console.log(data);
+    try {
+      db.collection("posts").add({
+        message: data.message,
+        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+        profilePic: user?.photoURL || "",
+        username: user?.displayName || "",
+        image: data.image,
+      });
+
+      reset();
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
