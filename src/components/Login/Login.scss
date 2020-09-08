@@ -1,0 +1,29 @@
+@import "../../styles/mixins";
+@import "../../styles/variables";
+
+.login {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+
+  &__logo {
+    @include displayFlex(initial, initial, column);
+
+    > img {
+      object-fit: contain;
+      height: 150px;
+    }
+  }
+
+  > button {
+    width: 300px;
+    background-color: $primaryColor;
+    color: $secondaryBackgroundColor;
+    font-weight: 800;
+
+    &:hover {
+      background-color: $primaryBackgroundColor;
+      color: $primaryColor;
+    }
+  }
+}
