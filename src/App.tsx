@@ -3,6 +3,7 @@ import "./App.scss";
 import Header from "./layout/Header/Header";
 import Sidebar from "./layout/Sidebar/Sidebar";
 import Feed from "./layout/Feed/Feed";
+import Widgets from "./components/Widgets/Widgets";
 
 const App: React.FC = () => {
   return (
@@ -12,6 +13,7 @@ const App: React.FC = () => {
       <div className="app__body">
         <Sidebar />
         <Feed />
+        <Widgets />
       </div>
     </div>
   );
