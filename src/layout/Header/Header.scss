@@ -30,6 +30,15 @@
       border: none;
       background-color: transparent;
       outline: none;
+      color: $tertiaryColor;
+
+      &::placeholder {
+        color: $secondaryColor;
+      }
+    }
+
+    > .MuiSvgIcon-root {
+      color: $tertiaryColor;
     }
   }
 
@@ -81,6 +90,11 @@
 
     > h4 {
       margin-left: 10px;
+      color: $tertiaryColor;
     }
+  }
+
+  .MuiIconButton-root {
+    color: $tertiaryColor;
   }
 }
