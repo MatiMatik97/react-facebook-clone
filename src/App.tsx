@@ -8,7 +8,7 @@ import Login from "./components/Login/Login";
 import { useUserContext } from "./contexts/UserContext";
 
 const App: React.FC = () => {
-  const [{ user }] = useUserContext();
+  const { state:{user} } = useUserContext();
 
   return (
     <div className="app">

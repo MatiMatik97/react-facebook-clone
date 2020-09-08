@@ -8,14 +8,16 @@ import ChatIcon from "@material-ui/icons/Chat";
 import StorefrontIcon from "@material-ui/icons/Storefront";
 import VideoLibraryIcon from "@material-ui/icons/VideoLibrary";
 import ExpandMoreOutlinedIcon from "@material-ui/icons/ExpandMoreOutlined";
+import { useUserContext } from "../../contexts/UserContext";
 
 const Sidebar: React.FC = () => {
+  const {
+    state: { user },
+  } = useUserContext();
+
   return (
     <div className="sidebar">
-      <SidebarRow
-        src="https://pyxis.nymag.com/v1/imgs/cb9/0a6/314d3251d7f439ffd52b7e805ed1c8a11a-30-drake-new.rsquare.w1200.jpg"
-        title="Drake"
-      />
+      <SidebarRow src={user?.photoURL || ""} title={user?.displayName || ""} />
       <SidebarRow
         Icon={LocalHospitalIcon}
         title="COVID-19 Information Center"

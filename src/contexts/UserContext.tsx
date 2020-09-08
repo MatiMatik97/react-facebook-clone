@@ -1,29 +1,40 @@
-import React, { createContext, useContext, useReducer } from "react";
-import * as firebase from "firebase";
+import React, {
+  createContext,
+  Dispatch,
+  Reducer,
+  useContext,
+  useReducer,
+} from "react";
+import { User } from "firebase";
 
 // TYPES AND INTERFACES
 
-enum ActionTypes {
-  SET,
+export enum UserActionTypes {
+  SET_USER = "SET_USER",
+}
+interface UserActions {
+  type: string;
+  payload: any;
 }
 
-type Actions = { type: ActionTypes.SET; payload: object };
-
-interface User {
-  user: object | null;
+interface UserProps {
+  user: User | null;
 }
-
 interface UserProviderProps {
-  reducer: (state: User, action: Actions) => User;
-  initialState: User;
-  children: JSX.Element;
+  reducer: Reducer<UserProps, UserActions>;
+  initialState: UserProps;
 }
 
-// USER REDUCER
+interface UserContextProps {
+  state: UserProps;
+  dispatch: Dispatch<UserActions>;
+}
 
-const UserReducer = (state: User, action: Actions) => {
+// REDUCER
+
+export const UserReducer: Reducer<UserProps, UserActions> = (state, action) => {
   switch (action.type) {
-    case ActionTypes.SET:
+    case UserActionTypes.SET_USER:
       return { ...state, user: action.payload };
 
     default:
@@ -31,33 +42,26 @@ const UserReducer = (state: User, action: Actions) => {
   }
 };
 
-export default UserReducer;
+// CONTEXT
 
-// USER CONTEXT
-
-export const userInitialState: User = {
+export const userInitialState: UserProps = {
   user: null,
 };
 
-const UserContext = createContext<User | any>(userInitialState);
+export const UserContext = createContext({} as UserContextProps);
 
 export const UserProvider: React.FC<UserProviderProps> = ({
   reducer,
   initialState,
   children,
-}) => (
-  <UserContext.Provider value={useReducer(reducer, initialState)}>
-    {children}
-  </UserContext.Provider>
-);
+}) => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <UserContext.Provider value={{ state, dispatch }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
 
 export const useUserContext = () => useContext(UserContext);
-
-// HELPER FUNCTIONS
-
-export const setUser = (user: firebase.User | null) => {
-  return {
-    type: ActionTypes.SET,
-    payload: user,
-  };
-};

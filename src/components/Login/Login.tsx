@@ -2,15 +2,15 @@ import React from "react";
 import "./Login.scss";
 import Button from "@material-ui/core/Button";
 import { auth, provider } from "../../firebase";
-import { useUserContext, setUser } from "../../contexts/UserContext";
+import { useUserContext, UserActionTypes } from "../../contexts/UserContext";
 
 const Login: React.FC = () => {
-  const [, dispatch] = useUserContext();
+  const { dispatch } = useUserContext();
 
   const signIn = async () => {
     try {
       const response = await auth.signInWithPopup(provider);
-      dispatch(setUser(response.user));
+      dispatch({ type: UserActionTypes.SET_USER, payload: response.user });
     } catch (error) {
       console.error(error);
     }

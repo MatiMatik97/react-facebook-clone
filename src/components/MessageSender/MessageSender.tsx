@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import VideocamIcon from "@material-ui/icons/Videocam";
 import PhotoLibraryIcon from "@material-ui/icons/PhotoLibrary";
 import InsertEmoticonIcon from "@material-ui/icons/InsertEmoticon";
+import { useUserContext } from "../../contexts/UserContext";
 
 type Message = {
   message: string;
@@ -12,6 +13,9 @@ type Message = {
 };
 
 const MessageSender: React.FC = () => {
+  const {
+    state: { user },
+  } = useUserContext();
   const { register, handleSubmit } = useForm<Message>();
 
   const onSubmit = (data: Message) => {
@@ -21,7 +25,7 @@ const MessageSender: React.FC = () => {
   return (
     <div className="messageSender">
       <div className="messageSender__top">
-        <Avatar />
+        <Avatar src={user?.photoURL || ""} />
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <input

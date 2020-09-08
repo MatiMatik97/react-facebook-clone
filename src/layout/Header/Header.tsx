@@ -10,8 +10,13 @@ import { Avatar, IconButton } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
+import { useUserContext } from "../../contexts/UserContext";
 
 const Header: React.FC = () => {
+  const {
+    state: { user },
+  } = useUserContext();
+
   return (
     <div className="header">
       <div className="header__left">
@@ -49,8 +54,8 @@ const Header: React.FC = () => {
 
       <div className="header__right">
         <div className="header__info">
-          <Avatar />
-          <h4>Drake</h4>
+          <Avatar src={user?.photoURL || ""} />
+          <h4>{user?.displayName || ""}</h4>
         </div>
 
         <IconButton>
