@@ -21,10 +21,28 @@ const MessageSender: React.FC = () => {
   } = useUserContext();
   const { register, handleSubmit, reset } = useForm<Message>();
 
-  const onSubmit = (data: Message) => {
+  const onSubmit = async (data: Message) => {
     try {
+      const badWordsURL =
+        "https://raw.githubusercontent.com/RobertJGabriel/Google-profanity-words/master/list.txt";
+
+      const badWordsResponse = await fetch(badWordsURL);
+      const badWordsData = await badWordsResponse.text();
+      const badWordsDataArray = badWordsData
+        .split("\n")
+        .filter((badWord) => badWord !== "");
+
+      let filteredMessage = data.message;
+      badWordsDataArray.map(
+        (badWord) =>
+          (filteredMessage = filteredMessage.replace(
+            new RegExp(badWord, "g"),
+            "%$@#!"
+          ))
+      );
+
       db.collection("posts").add({
-        message: data.message,
+        message: filteredMessage,
         timestamp: firebase.firestore.FieldValue.serverTimestamp(),
         profilePic: user?.photoURL || "",
         username: user?.displayName || "",

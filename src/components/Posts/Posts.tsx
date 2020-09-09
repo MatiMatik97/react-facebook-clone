@@ -26,6 +26,23 @@ const Posts: React.FC = () => {
     }
   }, []);
 
+  const formatDate = (timestamp: number | undefined) => {
+    if (timestamp) {
+      const date = new Date();
+      date.setTime(timestamp * 1000);
+      return date.toLocaleString(undefined, {
+        weekday: "long",
+        day: "2-digit",
+        month: "long",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+      });
+    }
+    return " ";
+  };
+
   return (
     <div className="posts">
       {posts.map((post) => (
@@ -33,7 +50,7 @@ const Posts: React.FC = () => {
           key={post.id}
           profilePic={post.data.profilePic}
           message={post.data.message}
-          timestamp={post.data.timestamp?.seconds}
+          timestamp={formatDate(post.data.timestamp?.seconds)}
           username={post.data.username}
           image={post.data.image}
         />

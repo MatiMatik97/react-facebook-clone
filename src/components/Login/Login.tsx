@@ -17,14 +17,15 @@ const Login: React.FC = () => {
   };
 
   const signInAsGuest = async () => {
+    const randomId = Math.floor(Math.random() * 80000) + 10000;
     const user = {
-      uid: "temporary_id",
-      displayName: "Guest",
+      uid: randomId,
+      displayName: `Guest #${randomId}`,
       photoURL:
         "https://www.graphicsprings.com/filestorage/stencils/3f09542940267c887a5bcef0724cf3a4.png?width=500&height=500",
-      email: "temporary_mail@gmail.com",
+      email: null,
       phoneNumber: null,
-      providerId: "google.com",
+      providerId: "client",
     };
 
     dispatch({ type: UserActionTypes.SET_USER, payload: user });

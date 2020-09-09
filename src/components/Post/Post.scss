@@ -14,6 +14,7 @@
     @include displayFlex(initial, center);
     position: relative;
     padding: 15px;
+    padding-bottom: 0;
   }
 
   &__avatar {
@@ -33,7 +34,7 @@
 
   // post__bottom
   &__bottom {
-    margin: 10px 0px;
+    margin: 5px 0px;
     padding: 15px 25px;
   }
 

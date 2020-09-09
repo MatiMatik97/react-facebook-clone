@@ -23,6 +23,7 @@ interface UserProps {
 interface UserProviderProps {
   reducer: Reducer<UserProps, UserActions>;
   initialState: UserProps;
+  children: JSX.Element;
 }
 
 interface UserContextProps {

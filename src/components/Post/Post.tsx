@@ -10,7 +10,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 interface PostProps {
   profilePic: string;
   username: string;
-  timestamp: number;
+  timestamp: string;
   message: string;
   image?: string;
 }
@@ -22,20 +22,6 @@ const Post: React.FC<PostProps> = ({
   message,
   image,
 }) => {
-  const formatDate = (timestamp: number) => {
-    const date = new Date();
-    date.setTime(timestamp * 1000);
-    return date.toLocaleString(undefined, {
-      weekday: "long",
-      day: "2-digit",
-      month: "long",
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      second: "2-digit",
-    });
-  };
-
   return (
     <div className="post">
       <div className="post__top">
@@ -43,7 +29,7 @@ const Post: React.FC<PostProps> = ({
 
         <div className="post__info">
           <h3>{username}</h3>
-          <p>{formatDate(timestamp)}</p>
+          <p>{timestamp}</p>
         </div>
       </div>
 
