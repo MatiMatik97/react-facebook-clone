@@ -33,6 +33,10 @@
         }
       }
 
+      > input.messageSender__input--error {
+        border-bottom: 1px solid red;
+      }
+
       > input:first-child {
         flex: 1;
       }

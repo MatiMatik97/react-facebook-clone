@@ -17,7 +17,11 @@ type Message = {
 
 const MessageSender: React.FC = () => {
   const [{ user }] = useUserContext();
-  const { register, handleSubmit, reset } = useForm<Message>();
+  const { register, handleSubmit, reset, errors } = useForm<Message>();
+
+  const messageSenderInputClassNames = `${
+    errors?.message ? "messageSender__input--error" : ""
+  }`;
 
   const onSubmit = async (data: Message) => {
     if (data.message === "") return;
@@ -62,12 +66,13 @@ const MessageSender: React.FC = () => {
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <input
-            placeholder="What's on your mind"
-            ref={register}
+            className={messageSenderInputClassNames}
+            placeholder="What's on your mind?"
+            ref={register({ required: true })}
             name="message"
           />
           <input
-            placeholder="image URL (Optional)"
+            placeholder="Image URL (Optional)"
             ref={register}
             name="image"
           />
