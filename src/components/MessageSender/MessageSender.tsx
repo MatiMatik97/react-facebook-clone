@@ -20,6 +20,8 @@ const MessageSender: React.FC = () => {
   const { register, handleSubmit, reset } = useForm<Message>();
 
   const onSubmit = async (data: Message) => {
+    if (data.message === "") return;
+
     try {
       const badWordsURL =
         "https://raw.githubusercontent.com/RobertJGabriel/Google-profanity-words/master/list.txt";
