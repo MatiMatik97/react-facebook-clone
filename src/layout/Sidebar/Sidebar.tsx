@@ -11,9 +11,7 @@ import ExpandMoreOutlinedIcon from "@material-ui/icons/ExpandMoreOutlined";
 import { useUserContext } from "../../contexts/UserContext";
 
 const Sidebar: React.FC = () => {
-  const {
-    state: { user },
-  } = useUserContext();
+  const [{ user }] = useUserContext();
 
   return (
     <div className="sidebar">

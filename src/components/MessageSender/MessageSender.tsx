@@ -16,9 +16,7 @@ type Message = {
 };
 
 const MessageSender: React.FC = () => {
-  const {
-    state: { user },
-  } = useUserContext();
+  const [{ user }] = useUserContext();
   const { register, handleSubmit, reset } = useForm<Message>();
 
   const onSubmit = async (data: Message) => {

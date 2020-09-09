@@ -1,4 +1,4 @@
-import React from "react";
+import React, { forwardRef, Ref } from "react";
 import "./Post.scss";
 import { Avatar } from "@material-ui/core";
 import ThumbUpIcon from "@material-ui/icons/ThumbUp";
@@ -15,55 +15,54 @@ interface PostProps {
   image?: string;
 }
 
-const Post: React.FC<PostProps> = ({
-  profilePic,
-  username,
-  timestamp,
-  message,
-  image,
-}) => {
-  return (
-    <div className="post">
-      <div className="post__top">
-        <Avatar src={profilePic} className="post__avatar" />
+export const Post = forwardRef(
+  (
+    { profilePic, username, timestamp, message, image }: PostProps,
+    ref: Ref<HTMLDivElement>
+  ) => {
+    return (
+      <div className="post" ref={ref}>
+        <div className="post__top">
+          <Avatar src={profilePic} className="post__avatar" />
 
-        <div className="post__info">
-          <h3>{username}</h3>
-          <p>{timestamp}</p>
+          <div className="post__info">
+            <h3>{username}</h3>
+            <p>{timestamp}</p>
+          </div>
+        </div>
+
+        <div className="post__bottom">
+          <p>{message}</p>
+        </div>
+
+        <div className="post__image">
+          <img src={image} alt="" />
+        </div>
+
+        <div className="post__options">
+          <div className="post__option">
+            <ThumbUpIcon />
+            <p>Like</p>
+          </div>
+
+          <div className="post__option">
+            <ChatBubbleOutlinedIcon />
+            <p>Comment</p>
+          </div>
+
+          <div className="post__option">
+            <NearMeIcon />
+            <p>Share</p>
+          </div>
+
+          <div className="post__option">
+            <AccountCircleIcon />
+            <ExpandMoreIcon />
+          </div>
         </div>
       </div>
-
-      <div className="post__bottom">
-        <p>{message}</p>
-      </div>
-
-      <div className="post__image">
-        <img src={image} alt="" />
-      </div>
-
-      <div className="post__options">
-        <div className="post__option">
-          <ThumbUpIcon />
-          <p>Like</p>
-        </div>
-
-        <div className="post__option">
-          <ChatBubbleOutlinedIcon />
-          <p>Comment</p>
-        </div>
-
-        <div className="post__option">
-          <NearMeIcon />
-          <p>Share</p>
-        </div>
-
-        <div className="post__option">
-          <AccountCircleIcon />
-          <ExpandMoreIcon />
-        </div>
-      </div>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default Post;

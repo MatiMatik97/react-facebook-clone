@@ -2,15 +2,15 @@ import React from "react";
 import "./Login.scss";
 import Button from "@material-ui/core/Button";
 import { auth, provider } from "../../firebase";
-import { useUserContext, UserActionTypes } from "../../contexts/UserContext";
+import { useUserContext } from "../../contexts/UserContext";
 
 const Login: React.FC = () => {
-  const { dispatch } = useUserContext();
+  const [, dispatch] = useUserContext();
 
   const signInWithGoogle = async () => {
     try {
       const response = await auth.signInWithPopup(provider);
-      dispatch({ type: UserActionTypes.SET_USER, payload: response.user });
+      dispatch({ type: "SET_USER", payload: response.user });
     } catch (error) {
       console.error(error);
     }
@@ -28,7 +28,7 @@ const Login: React.FC = () => {
       providerId: "client",
     };
 
-    dispatch({ type: UserActionTypes.SET_USER, payload: user });
+    dispatch({ type: "SET_USER", payload: user });
   };
 
   return (

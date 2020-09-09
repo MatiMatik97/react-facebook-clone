@@ -9,17 +9,15 @@ import { UserInfo } from "firebase";
 
 // TYPES AND INTERFACES
 
-export enum UserActionTypes {
-  SET_USER = "SET_USER",
-}
-interface UserActions {
-  type: string;
+type UserActions = {
+  type: "SET_USER";
   payload: any;
-}
+};
 
 interface UserProps {
   user: UserInfo | null;
 }
+
 interface UserProviderProps {
   reducer: Reducer<UserProps, UserActions>;
   initialState: UserProps;
@@ -35,7 +33,7 @@ interface UserContextProps {
 
 export const UserReducer: Reducer<UserProps, UserActions> = (state, action) => {
   switch (action.type) {
-    case UserActionTypes.SET_USER:
+    case "SET_USER":
       return { ...state, user: action.payload };
 
     default:
@@ -65,4 +63,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({
   );
 };
 
-export const useUserContext = () => useContext(UserContext);
+export const useUserContext = () => {
+  const { state, dispatch } = useContext(UserContext);
+  return [state, dispatch] as const;
+};
