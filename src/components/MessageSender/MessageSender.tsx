@@ -28,7 +28,7 @@ const MessageSender: React.FC = () => {
 
     try {
       const badWordsURL =
-        "https://raw.githubusercontent.com/RobertJGabriel/Google-profanity-words/master/list.txt";
+        "https://raw.githubusercontent.com/coffee-and-fun/google-profanity-words/main/data/list.txt";
 
       const badWordsResponse = await fetch(badWordsURL);
       const badWordsData = await badWordsResponse.text();

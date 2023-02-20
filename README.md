@@ -1,5 +1,5 @@
 ## React Facebook Clone
-This is a Facebook clone web application written in React with Typescript and SASS. You can login with Google account or as guest to only try the functionality. Implements adding posts with images. Displays Facebook's home page with menu, live feed and posts.
+This is a Facebook clone web application written in React with Typescript and SASS. You can login with Google account or as guest to only try the functionality. Implements adding posts with images and bad words filter. Displays Facebook's home page with menu, live feed and posts.
 
 Site: [facebook-clone-app-8187a.web.app](https://facebook-clone-app-8187a.web.app/)
 
